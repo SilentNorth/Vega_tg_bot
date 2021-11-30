@@ -1,8 +1,3 @@
-function randomInteger(min, max) {    
-    let rand = min - 0.5 + Math.random() * (max - min + 1);
-    return Math.round(rand);
-  }
-
 const { Telegraf } = require('telegraf');
 require('dotenv').config();
 
@@ -12,12 +7,15 @@ bot.start((ctx) => ctx.reply(`Hello, ${ctx.message.from.first_name ? ctx.message
 
 bot.on('message', (ctx) => {
     if(ctx.message.text) {
+
         ctx.reply(ctx.message.text)
+
     } else if(ctx.message.dice) {
-        if(ctx.message.dice.emoji == "🎰"){
-            app.telegram.sendDice(ctx.message.chat.id, "🎰");
-        }
-        // ctx.reply(ctx.message.dice)
+
+        ctx.telegram.sendDice(ctx.message.chat.id, {emoji: ctx.message.dice.emoji} );
+
+    } else if(ctx.message.sticker) {
+        ctx.telegram.sendSticker(ctx.message.chat.id, ctx.message.sticker.file_id);
     }
     
 })
