@@ -8,7 +8,7 @@ bot.on('message', (ctx) => {
     if(ctx.message.text) {
         ctx.reply(ctx.message.text)
     } else if(ctx.message.dice) {
-        ctx.reply(ctx.message.dice.emoji)
+        ctx.reply(ctx.message.dice)
     }
     
 })
